@@ -1,0 +1,6 @@
+[package]
+name = "cl-gen"
+version = "0.1.0"
+authors = ["Dennis Hübner <dennis.huebner89@gmail.com>"]
+
+[dependencies]
