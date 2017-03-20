@@ -33,16 +33,59 @@ enum QuestionType {
 
 fn main() {
     println!("Bitte Fragetyp eingeben: [1-7], 0 for help");
-    let mut input = String::new();
-    match io::stdin().read_line(&mut input) {
-        Ok(n) => {}
-        Err(error) => println!("error: {}", error),
+
+    let mut question_type = String::new();
+    get_input(&mut question_type);
+
+    match question_type.trim() {
+        "1" => println!("Single Choice"),
+        "2" => println!("Multiple Choice"),
+        "3" => println!("Essay"),
+        "4" => println!("True/False"),
+        "5" => println!("Matching"),
+        "6" => println!("Short Answer"),
+        "7" => println!("NumericalResponse"),
+        _ => println!("else"),
     }
 
-    if input == "1" {
-        println!("SingleChoice");
+    println!("Type in the question text");
+    let mut question_text = String::new();
+    get_input(&mut question_text);
+
+    println!("You typed: {}", question_text);
+
+    let mut answers: Vec<Answer> = Vec::new();
+    loop {
+        println!("Insert Answer {}: [0] to exit", answers.len() + 1);
+        let mut answer = String::new();
+        get_input(&mut answer);
+        println!("{}", answer);
+        match answer.trim() {
+            "0" => break,
+            _ => {
+                answers.push(Answer {
+                    title: answer.to_string(),
+                    points: 0,
+                })
+            }
+        }
     }
-    println!("{}", input);
+
+    for answer in &answers {
+        println!("{}", answer.title);
+    }
+}
+
+fn get_input(input: &mut String) -> () {
+    let mut read_line = String::new();
+    match io::stdin().read_line(&mut read_line) {
+        Ok(n) => {
+            if n > 0 {
+                *input = read_line;
+            }
+        }
+        Err(error) => println!("error: {}", error),
+    }
 }
 
 fn new_question(question_type: &str, name: &str) {
