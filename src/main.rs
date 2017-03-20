@@ -9,18 +9,20 @@ use std::vec::Vec;
  * - export function
  *
  */
-
+#[derive(Debug)]
 struct Answer {
     title: String,
     points: i32,
 }
 
+#[derive(Debug)]
 struct Question {
     question_type: QuestionType,
     title: String,
     answers: Vec<Answer>,
 }
 
+#[derive(Debug)]
 enum QuestionType {
     SingleChoice,
     MultipleChoice,
@@ -29,22 +31,24 @@ enum QuestionType {
     Matching,
     ShortAnswer,
     NumericalResponse,
+    UndefinedQuestion,
 }
 
 fn main() {
     println!("Bitte Fragetyp eingeben: [1-7], 0 for help");
 
-    let mut question_type = String::new();
-    get_input(&mut question_type);
+    let mut question_type_raw = String::new();
+    let mut question_type: QuestionType = QuestionType::UndefinedQuestion;
+    get_input(&mut question_type_raw);
 
-    match question_type.trim() {
-        "1" => println!("Single Choice"),
-        "2" => println!("Multiple Choice"),
-        "3" => println!("Essay"),
-        "4" => println!("True/False"),
-        "5" => println!("Matching"),
-        "6" => println!("Short Answer"),
-        "7" => println!("NumericalResponse"),
+    match question_type_raw.trim() {
+        "1" => question_type = QuestionType::SingleChoice,
+        "2" => question_type = QuestionType::MultipleChoice,
+        "3" => question_type = QuestionType::Essay,
+        "4" => question_type = QuestionType::TrueFalse,
+        "5" => question_type = QuestionType::Matching,
+        "6" => question_type = QuestionType::ShortAnswer,
+        "7" => question_type = QuestionType::NumericalResponse,
         _ => println!("else"),
     }
 
@@ -59,7 +63,6 @@ fn main() {
         println!("Insert Answer {}: [0] to exit", answers.len() + 1);
         let mut answer = String::new();
         get_input(&mut answer);
-        println!("{}", answer);
         match answer.trim() {
             "0" => break,
             _ => {
@@ -71,9 +74,13 @@ fn main() {
         }
     }
 
-    for answer in &answers {
-        println!("{}", answer.title);
-    }
+    let question = Question {
+        question_type: question_type,
+        title: question_text,
+        answers: answers,
+    };
+
+    println!("{:?}", question);
 }
 
 fn get_input(input: &mut String) -> () {
