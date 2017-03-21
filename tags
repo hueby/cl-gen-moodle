@@ -5,32 +5,36 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/aef7003/
 0	/Users/dennis/Projekte/cl-gen/.vscode/launch.json	/^        {$/;"	o	array:configurations
-Answer	/Users/dennis/Projekte/cl-gen/src/main.rs	/^struct Answer {$/;"	s
-Essay	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    Essay,$/;"	e	enum:QuestionType
-Matching	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    Matching,$/;"	e	enum:QuestionType
-MultipleChoice	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    MultipleChoice,$/;"	e	enum:QuestionType
-NumericalResponse	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    NumericalResponse,$/;"	e	enum:QuestionType
-Question	/Users/dennis/Projekte/cl-gen/src/main.rs	/^struct Question {$/;"	s
-QuestionType	/Users/dennis/Projekte/cl-gen/src/main.rs	/^enum QuestionType {$/;"	g
-ShortAnswer	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    ShortAnswer,$/;"	e	enum:QuestionType
-SingleChoice	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    SingleChoice,$/;"	e	enum:QuestionType
-TrueFalse	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    TrueFalse,$/;"	e	enum:QuestionType
-UndefinedQuestion	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    UndefinedQuestion,$/;"	e	enum:QuestionType
+Answer	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^    pub struct Answer {$/;"	s	module:xml_export
+Essay	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        Essay,$/;"	e	enum:xml_export::QuestionType
+Matching	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        Matching,$/;"	e	enum:xml_export::QuestionType
+MultipleChoice	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        MultipleChoice,$/;"	e	enum:xml_export::QuestionType
+NumericalResponse	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        NumericalResponse,$/;"	e	enum:xml_export::QuestionType
+Question	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^    pub struct Question {$/;"	s	module:xml_export
+QuestionType	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^    pub enum QuestionType {$/;"	g	module:xml_export
+ShortAnswer	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        ShortAnswer,$/;"	e	enum:xml_export::QuestionType
+SingleChoice	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        SingleChoice,$/;"	e	enum:xml_export::QuestionType
+TrueFalse	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        TrueFalse,$/;"	e	enum:xml_export::QuestionType
+UndefinedQuestion	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        UndefinedQuestion,$/;"	e	enum:xml_export::QuestionType
 add_answers	/Users/dennis/Projekte/cl-gen/src/main.rs	/^fn add_answers(answers: &mut Vec<Answer>, question_type: &QuestionType) {$/;"	f
-answers	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    answers: Vec<Answer>,$/;"	m	struct:Question
+answers	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        pub answers: Vec<Answer>,$/;"	m	struct:xml_export::Question
 configurations	/Users/dennis/Projekte/cl-gen/.vscode/launch.json	/^    "configurations": [$/;"	a
 cwd	/Users/dennis/Projekte/cl-gen/.vscode/launch.json	/^            "cwd": "${workspaceRoot}"$/;"	s	object:configurations.0
+determine_type	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^    fn determine_type(question_type: &QuestionType) -> String {$/;"	f	module:xml_export
 get_input	/Users/dennis/Projekte/cl-gen/src/main.rs	/^fn get_input(input: &mut String) -> () {$/;"	f
 get_question_type	/Users/dennis/Projekte/cl-gen/src/main.rs	/^fn get_question_type(question_type_raw: String) -> QuestionType {$/;"	f
-it_works	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^    fn it_works() {$/;"	f	module:tests
+lib	/Users/dennis/Projekte/cl-gen/src/main.rs	/^mod lib;$/;"	n
 main	/Users/dennis/Projekte/cl-gen/src/main.rs	/^fn main() {$/;"	f
 name	/Users/dennis/Projekte/cl-gen/.vscode/launch.json	/^            "name": "GDB Debug",$/;"	s	object:configurations.0
-points	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    points: i32,$/;"	m	struct:Answer
-question_type	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    question_type: QuestionType,$/;"	m	struct:Question
+new_checklist	/Users/dennis/Projekte/cl-gen/src/main.rs	/^fn new_checklist(questions: &mut Vec<Question>) {$/;"	f
+points	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        pub points: i32,$/;"	m	struct:xml_export::Answer
+print_to_file	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^    fn print_to_file(xml_string: &String) {$/;"	f	module:xml_export
+question_type	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        pub question_type: QuestionType,$/;"	m	struct:xml_export::Question
+questions_to_moodle	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^    pub fn questions_to_moodle(questions: &mut Vec<Question>) {$/;"	f	module:xml_export
 request	/Users/dennis/Projekte/cl-gen/.vscode/launch.json	/^            "request": "launch",$/;"	s	object:configurations.0
 target	/Users/dennis/Projekte/cl-gen/.vscode/launch.json	/^            "target": ".\/target\/debug\/cl-gen",$/;"	s	object:configurations.0
-tests	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^mod tests {$/;"	n
-title	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    title: String,$/;"	m	struct:Answer
-title	/Users/dennis/Projekte/cl-gen/src/main.rs	/^    title: String,$/;"	m	struct:Question
+title	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        pub title: String,$/;"	m	struct:xml_export::Answer
+title	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^        pub title: String,$/;"	m	struct:xml_export::Question
 type	/Users/dennis/Projekte/cl-gen/.vscode/launch.json	/^            "type": "gdb",$/;"	s	object:configurations.0
 version	/Users/dennis/Projekte/cl-gen/.vscode/launch.json	/^    "version": "0.2.0",$/;"	s
+xml_export	/Users/dennis/Projekte/cl-gen/src/lib.rs	/^pub mod xml_export {$/;"	n

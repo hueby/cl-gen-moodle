@@ -1,47 +1,33 @@
 use std::io;
 use std::vec::Vec;
 
+mod lib;
+use lib::xml_export::QuestionType;
+use lib::xml_export::Question;
+use lib::xml_export::Answer;
+
 /**
  *
  * - struct for all question types (done)
  * - input routine (done)
- * - hash set as data structure
+ * - vector as main data structure (done)
  * - export function
- * - validation
+ * - input validation
  *
  */
-#[derive(Debug)]
-struct Answer {
-    title: String,
-    points: i32,
-}
-
-#[derive(Debug)]
-struct Question {
-    question_type: QuestionType,
-    title: String,
-    answers: Vec<Answer>,
-}
-
-#[derive(Debug)]
-enum QuestionType {
-    SingleChoice,
-    MultipleChoice,
-    Essay,
-    TrueFalse,
-    Matching,
-    ShortAnswer,
-    NumericalResponse,
-    UndefinedQuestion,
-}
 
 fn main() {
+    let mut questions: Vec<Question> = Vec::new();
 
+    new_checklist(&mut questions);
+
+    lib::xml_export::questions_to_moodle(&mut questions);
+}
+
+fn new_checklist(questions: &mut Vec<Question>) {
     // Ask the question type
     // 2 or more answers
     // next question? yes loop again, no break
-
-    let mut questions: Vec<Question> = Vec::new();
 
     loop {
         println!("Bitte Fragetyp eingeben: [1-7] ");
@@ -76,10 +62,10 @@ fn main() {
             _ => break,
         }
     }
+
 }
 
 fn add_answers(answers: &mut Vec<Answer>, question_type: &QuestionType) {
-
     loop {
         println!("Insert Answer {}: [0] to exit", answers.len() + 1);
         let mut answer = String::new();
@@ -106,6 +92,7 @@ fn get_input(input: &mut String) -> () {
     match io::stdin().read_line(&mut read_line) {
         Ok(n) => {
             if n > 0 {
+                read_line.pop();
                 *input = read_line;
             }
         }
