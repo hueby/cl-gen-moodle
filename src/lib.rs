@@ -34,8 +34,10 @@ pub mod xml_export {
             let new_question = format!("<question type=\"{}\">", question_type_id);
             xml_string += &new_question;
 
+            xml_string += "<name><text>";
+            xml_string += &question.title;
+            xml_string += "</text></name>";
             xml_string += "<questiontext format=\"html\">";
-
             xml_string += "<text>";
             xml_string += &question.title;
             xml_string += "</text></questiontext>";
