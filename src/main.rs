@@ -3,10 +3,11 @@ use std::vec::Vec;
 
 /**
  *
- * - struct for all question types
- * - input routine
+ * - struct for all question types (done)
+ * - input routine (done)
  * - hash set as data structure
  * - export function
+ * - validation
  *
  */
 #[derive(Debug)]
@@ -35,30 +36,50 @@ enum QuestionType {
 }
 
 fn main() {
-    println!("Bitte Fragetyp eingeben: [1-7], 0 for help");
 
-    let mut question_type_raw = String::new();
-    let mut question_type: QuestionType = QuestionType::UndefinedQuestion;
-    get_input(&mut question_type_raw);
+    // Ask the question type
+    // 2 or more answers
+    // next question? yes loop again, no break
 
-    match question_type_raw.trim() {
-        "1" => question_type = QuestionType::SingleChoice,
-        "2" => question_type = QuestionType::MultipleChoice,
-        "3" => question_type = QuestionType::Essay,
-        "4" => question_type = QuestionType::TrueFalse,
-        "5" => question_type = QuestionType::Matching,
-        "6" => question_type = QuestionType::ShortAnswer,
-        "7" => question_type = QuestionType::NumericalResponse,
-        _ => println!("else"),
+    let mut questions: Vec<Question> = Vec::new();
+
+    loop {
+        println!("Bitte Fragetyp eingeben: [1-7] ");
+
+        let mut question_type_raw = String::new();
+        get_input(&mut question_type_raw);
+
+        let question_type: QuestionType = get_question_type(question_type_raw);
+
+        println!("Type in the question text:");
+        let mut question_text = String::new();
+        get_input(&mut question_text);
+
+        let mut answers: Vec<Answer> = Vec::new();
+        add_answers(&mut answers, &question_type);
+
+        let question = Question {
+            question_type: question_type,
+            title: question_text,
+            answers: answers,
+        };
+
+        questions.push(question);
+
+        println!("Next Question? [J/n]: ");
+        let mut next_question = String::new();
+        get_input(&mut next_question);
+        match next_question.trim() {
+            "J" => continue,
+            "n" => break,
+            "\n" => continue,
+            _ => break,
+        }
     }
+}
 
-    println!("Type in the question text");
-    let mut question_text = String::new();
-    get_input(&mut question_text);
+fn add_answers(answers: &mut Vec<Answer>, question_type: &QuestionType) {
 
-    println!("You typed: {}", question_text);
-
-    let mut answers: Vec<Answer> = Vec::new();
     loop {
         println!("Insert Answer {}: [0] to exit", answers.len() + 1);
         let mut answer = String::new();
@@ -69,18 +90,15 @@ fn main() {
                 answers.push(Answer {
                     title: answer.to_string(),
                     points: 0,
-                })
+                });
+                match *question_type {
+                    QuestionType::SingleChoice => continue,
+                    QuestionType::MultipleChoice => continue,
+                    _ => break,
+                }
             }
         }
     }
-
-    let question = Question {
-        question_type: question_type,
-        title: question_text,
-        answers: answers,
-    };
-
-    println!("{:?}", question);
 }
 
 fn get_input(input: &mut String) -> () {
@@ -95,7 +113,15 @@ fn get_input(input: &mut String) -> () {
     }
 }
 
-fn new_question(question_type: &str, name: &str) {
-    println!("{}", question_type);
-    println!("{}", name);
+fn get_question_type(question_type_raw: String) -> QuestionType {
+    match question_type_raw.trim() {
+        "1" => QuestionType::SingleChoice,
+        "2" => QuestionType::MultipleChoice,
+        "3" => QuestionType::Essay,
+        "4" => QuestionType::TrueFalse,
+        "5" => QuestionType::Matching,
+        "6" => QuestionType::ShortAnswer,
+        "7" => QuestionType::NumericalResponse,
+        _ => QuestionType::UndefinedQuestion,
+    }
 }
