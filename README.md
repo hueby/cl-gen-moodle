@@ -1,6 +1,6 @@
 # cl-gen-moodle
 
-Small project. Main target is to learn Rust. This tool generates a Quiz with different question types for Moodle Quiz in XML format.
+Small project. Main target is to learn Rust. This tool generates a question pool with different question types for Moodle Quiz in XML format. The resulting XML-file is accepted by the Moodle XML Import. \
 To build and run it, just run `cargo run` in the project root.
 
 ## Cross compilation for Windows and Linux
@@ -74,3 +74,7 @@ Final step. Build.
 ```
 cargo build --target x86_64-unkown-linux-musl
 ```
+
+# License
+
+MIT
